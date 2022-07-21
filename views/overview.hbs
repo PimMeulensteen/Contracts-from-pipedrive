@@ -1,0 +1,21 @@
+<div class="btn-group">
+    <a class="btn btn-outline-info">Wijzig inforamtie organisatie</a>
+    <a class="btn btn-outline-info">Wijzig producten</a>
+</div>
+<div class="row">
+    <div class="col">
+
+        <h3>Maak een contract op basis van een deal:</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="list-group">
+            {{#each deals}}
+            <a href="/create/?selectedIds={{id}}" class="list-group-item"><strong>{{title}}</strong> (ID:
+                {{id}})</a>
+            {{/each}}
+        </div>
+    </div>
+</div>

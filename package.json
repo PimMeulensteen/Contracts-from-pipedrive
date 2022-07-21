@@ -7,16 +7,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/pipedrive/FiftyFifty.git"
+    "url": "git+ssh://git@github.com/pipedrive/FiftyFifty.git"
   },
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Siim Kibus",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.16.2",
     "hbs": "^4.1.1",
     "knex": "^0.21.1",
@@ -24,6 +25,15 @@
     "passport-oauth": "^1.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
+    "spell-it": "^0.2.1",
     "sqlite3": "^4.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/pipedrive/FiftyFifty/issues"
+  },
+  "homepage": "https://github.com/pipedrive/FiftyFifty#readme",
+  "keywords": [],
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }

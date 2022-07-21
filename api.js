@@ -1,49 +1,46 @@
+const async = require('hbs/lib/async');
 const request = require('request-promise');
 
+async function api_call(full_url, at) {
+	const requestOptions = {
+		uri: full_url,
+		headers: {
+			'Authorization': `Bearer ${at}`
+		},
+		json: true
+	};
+	const data = await request(requestOptions);
+	return data;
+}
+
 async function getUser(accessToken) {
-	const requestOptions = {
-		uri: 'https://api.pipedrive.com/v1/users/me',
-		headers: {
-			'Authorization': `Bearer ${accessToken}`
-		},
-		json: true
-	};
-	const userInfo = await request(requestOptions);
-
-	return userInfo;
+	let url = 'https://api.pipedrive.com/v1/users/me';
+	return api_call(url, accessToken);
 }
-
 async function getDeals(accessToken) {
-	const requestOptions = {
-		uri: 'https://api.pipedrive.com/v1/deals',
-		headers: {
-			'Authorization': `Bearer ${accessToken}`
-		},
-		qs: { status: 'open' },
-		json: true
-	};
-	const deals = await request(requestOptions);
-
-	return deals;
+	let url = 'https://api.pipedrive.com/v1/deals';
+	return api_call(url, accessToken);
 }
 
-async function updateDeal(id, outcome, accessToken) {
-	const requestOptions = {
-		uri: `https://api.pipedrive.com/v1/deals/${id}`,
-		method: 'PUT',
-		headers: {
-			'Authorization': `Bearer ${accessToken}`
-		},
-		json: {
-			status: outcome
-		}
-	};
+async function getDeal(accessToken, id) {
+	let url = 'https://api.pipedrive.com/v1/deals/' + id;
+	return api_call(url, accessToken);
+}
 
-	await request(requestOptions);
+async function getDealFields(accessToken) {
+	let url = 'https://api.pipedrive.com/v1/dealFields';
+	return api_call(url, accessToken);
+}
+
+async function getDealProducts(accessToken, id) {
+	url = 'https://api.pipedrive.com/v1/deals/' + id + '/products';
+	return api_call(url, accessToken);
 }
 
 module.exports = {
 	getUser,
 	getDeals,
-	updateDeal
+	getDeal,
+	getDealProducts,
+	getDealFields
 };

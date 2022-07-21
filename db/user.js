@@ -2,7 +2,6 @@ const knex = require('./connection');
 
 async function createTable() {
 	const tableExists = await knex.schema.hasTable('users');
-
 	if (tableExists) {
 		return;
 	}

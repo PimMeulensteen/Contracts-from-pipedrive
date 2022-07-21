@@ -1,0 +1,63 @@
+Controleer onderstaande data, en pas deze zo nodig aan.
+Als velden hier niet aan te passen zijn, dienen deze aangepast te worden in Pipedrive.
+Aanpassing die op deze site worden gedaan, worden niet automatisch ook in Pipedrive
+aangepast.
+<h2>Algemene informatie</h2>
+<ul>
+    <li><b>Ingang contract:</b> </li>
+    <li><b>Einde contract: </b></li>
+    <li><b>Datum van contract: </b></li>
+    <li><b>Betalingstermijn:</b> <input type="number" value="30" min="10" step="5"></li>
+</ul>
+
+<h2>Partnerdetails </h2>
+<ul>
+    <li><b>Organisatie:</b> {{ data.data.org_id.name}}</li>
+    <li><b>Contactpersoon:</b> {{ data.data.person_id.name}}</li>
+    <li><b>Vestigignsadres:</b> {{ data.data.org_id.address }}</li>
+    <li><b>KvK-nummer</b></li>
+</ul>
+
+<h2> Tekenbevoegden </h2>
+<table class="table">
+    <tr>
+        <th>Naam</th>
+        <th>Functie</th>
+    </tr>
+    <tr>
+        <td>V Achter</td>
+        <td>Voorzitter</td>
+    </tr>
+    <tr>
+        <td>N Voor</td>
+        <td>Secreatris</td>
+    </tr>
+</table>
+
+<h2>Productinformatie</h2>
+<table class="table">
+    <tr>
+        <th>Naam</th>
+        <th>Prijs</th>
+        <th>Aantal</th>
+        <th>Korting</th>
+        <th>Totaal</th>
+    </tr>
+
+    {{#each product_data.data}}
+    <tr>
+        <td>{{ this.name }}</td>
+        <td>€{{ this.item_price }}</td>
+        <td>{{ this.quantity_formatted }}</td>
+        <td>{{ this.discount_percentage }}%</td>
+        <td>{{ this.sum_formatted }}</td>
+    </tr>
+    {{/each}}
+</table>
+<div id='total'>
+    <b>Totale Contractwaarde:</b> {{ data.data.formatted_weighted_value }} (zegge: <i>{{ zegge }}</i>)
+</div>
+<button class="btn btn-primary">Maak contract</button>
+
+
+<link rel="stylesheet" href="/css/create.css">
